@@ -1,0 +1,15 @@
+FROM oven/bun:1
+
+ARG DATABASE_URL
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN bun install
+
+RUN cd packages/db && DATABASE_URL=${DATABASE_URL} bunx prisma generate
+
+EXPOSE 3001
+WORKDIR /usr/src/app/apps/backend
+CMD ["bun", "run", "index.ts"]
