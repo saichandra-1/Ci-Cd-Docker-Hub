@@ -19,7 +19,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./backend/Dockerfile.backend
+          file: ./apps/backend/Dockerfile.backend
           push: true
           tags: chandra/docker-deploy:${{ github.sha }}
       - name: Deploy to the VM
